@@ -1,11 +1,25 @@
-const express = require("express");
-const app = express();
+const mongoose = require('mongoose');
+const app = require('./app');
+const {
+	SERVER_PORT,
+	DB_NAME,
+	DB_USER,
+	DB_PASSWORD,
+	HOST,
+} = require('./constants');
 
-app.get("/", (req, res) => {
-    res.send("hello world");
-});
+mongoose.Promise = global.Promise;
 
-const PORT = 3001;
-app.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
-});
+const uri = `mongodb://${DB_USER}:${DB_PASSWORD}@${HOST}`;
+// Conexão com o banco de dados
+mongoose
+	.connect(uri, { dbName: DB_NAME })
+	.then(() => {
+		console.log('The connection was established successfully!');
+
+		// Estabelecendo conexão com o servidor
+		app.listen(SERVER_PORT, () => {
+			console.log(`Server running on: http://localhost:${SERVER_PORT}`);
+		});
+	})
+	.catch((err) => console.log(err));
