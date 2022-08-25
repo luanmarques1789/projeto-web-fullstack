@@ -1,5 +1,5 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -9,18 +9,11 @@ app.use(bodyParser.json());
 
 // Cors
 
-// Loading routes
-app.get('/', (req, res) => {
-	res.status(200).send({
-		message: 'Hello world!',
-	});
-});
+// importing routes
+const indexRoutes = require("./routes/index");
 
-app.get('/testing', (req, res) => {
-	res.status(200).send({
-		message: 'Testing node server!',
-	});
-});
+// Loading routes
+app.use(indexRoutes);
 
 // Exportações
 module.exports = app;
