@@ -10,4 +10,4 @@ function test(req, res) {
   });
 }
 
-module.exports = {init, test};
+module.exports = { init, test };

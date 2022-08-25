@@ -11,9 +11,10 @@ app.use(bodyParser.json());
 
 // importing routes
 const indexRoutes = require("./routes/index");
-
+const userRoutes = require("./routes/users");
 // Loading routes
 app.use(indexRoutes);
+app.use(userRoutes);
 
 // Exportações
 module.exports = app;
