@@ -10,7 +10,10 @@ const {
 
 mongoose.Promise = global.Promise;
 
-const uri = `mongodb://${DB_USER}:${DB_PASSWORD}@${HOST}`;
+const uri =
+	`mongodb://${HOST}/${DB_NAME}` ||
+	`mongodb://${DB_USER}:${DB_PASSWORD}@${HOST}`;
+
 // Conexão com o banco de dados
 mongoose
 	.connect(uri, { dbName: DB_NAME })
