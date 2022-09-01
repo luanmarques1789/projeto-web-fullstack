@@ -1,5 +1,5 @@
 function init(req, res) {
-  res.send(200, { message: "User's route!" });
+	res.status(200).send({ message: "User's route!" });
 }
 
 module.exports = { init };
